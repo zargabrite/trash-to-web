@@ -18,12 +18,12 @@ io.sockets.on('connection', newConnection);
 function newConnection(socket) {
     console.log('new connection: ' + socket.id);
     
-    //recieve the message 'knobState' from the leader, the content of which is called with the function knobMsg
+    //lead-to-follow: 2. recieve the message 'knobState' from the leader, the content of which is called with the function knobMsg
     socket.on('knobState', knobMsg);
 
     //knobMsg function is called, which holds the data from the 'mouse' message 
     function knobMsg(data) {
-        //when the 'knobState' message comes in, send the data out to the client as 'remoteKnob'
+        //lead-to-follow: 3. when the 'knobState' message comes in, send the data out to the client as 'remoteKnob'
         socket.broadcast.emit('remoteKnob',data);
         //if you wanted the data to go back out to everyone including yourself you would write
         //io.sockets.emit('remoteKnob',data);
@@ -32,9 +32,11 @@ function newConnection(socket) {
         console.log("Knob State: ", data);
     }
 
+    //follow-to-lead: 2. listen for slider messages
     socket.on('slideState', slideMsg);
     
     function slideMsg(data) {
+      //follow-to-lead 3. emit slider values to leader-side for changing LED state
       socket.broadcast.emit('LEDstate', data);
 
       console.log("LED State: ", data);
