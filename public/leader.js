@@ -59,7 +59,7 @@ function draw() {
     fill(backgBrightness);   // transfer the brightness to brightness of the color used for drawing
     rect(0,0,width,height);   // left half
 
-    // grab arduino knob value and store it in the object data
+    // follow-to-lead: 5. grab arduino knob value and store it in the object data
     var data = {
         val: inArdData
     }
