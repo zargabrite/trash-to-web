@@ -43,7 +43,7 @@ function setup() {
     //connect to server
     socket = io.connect()
 
-    //4. recieve the message called 'LEDVal' from the server and setup event handler (function 'LEDBrightness')
+    //follow-to-lead 4. recieve the message called 'LEDVal' from the server and setup event handler (function 'LEDBrightness')
     socket.on('LEDstate', LEDBrightness);
 }
 
@@ -63,7 +63,7 @@ function draw() {
     var data = {
         val: inArdData
     }
-    // emit message 'knob' and its data
+    // lead-to-follow: 1. emit message 'knob' and its data
     socket.emit('knobState', data);
 }
 
