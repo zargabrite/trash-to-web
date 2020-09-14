@@ -30,7 +30,7 @@ function setup() {
     slider.style('width', '300px');
 
     //connect to server
-    socket = io.connect()
+    const socket = io.connect()
 
     socket.on('open', printConnection);
 
