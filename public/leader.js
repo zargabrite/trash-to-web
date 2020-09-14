@@ -65,7 +65,11 @@ function draw() {
     }
     // lead-to-follow: 1. emit message 'knob' and its data
     socket.emit('knobState', data);
-    print('The value of the potentiometer is ' + width);
+    
+    var textColour = map(backgBrightness, 0, 255, 255, 0);
+    fill(textColour);
+    textSize(18);
+    text("KNOB VALUE: " + inArdData, 30, 50);
 }
 
 // Following functions print the serial communication status to the console for debugging purposes
