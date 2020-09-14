@@ -65,7 +65,7 @@ function draw() {
     }
     // lead-to-follow: 1. emit message 'knob' and its data
     socket.emit('knobState', data);
-    print(inArdData);
+    print('hello');
 }
 
 // Following functions print the serial communication status to the console for debugging purposes
