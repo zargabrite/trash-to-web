@@ -32,8 +32,14 @@ function setup() {
     //connect to server
     socket = io.connect()
 
+    socket.on('open', printConnection);
+
     //lead-to-follow: 4. listen for 'remoteKnob' messages and setup event handler (function 'LEDBrightness')
     socket.on('remoteKnob', backgroundBrightness);
+}
+
+function printConnection () {
+    print('connected to server.')
 }
 
 function backgroundBrightness(data) {
