@@ -43,6 +43,7 @@ function printConnection () {
 function backgroundBrightness(data) {
     //lead-to-follow: 5. map the incoming remoteKnob message's data to the variable backgBrightness
     backgBrightness = data.val
+    print(data.val);
 }
 
 function draw() {
