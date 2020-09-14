@@ -30,7 +30,7 @@ function setup() {
     slider.style('width', '300px');
 
     //connect to server
-    const socket = io.connect(printConnection);
+    const socket = io();
 
     //lead-to-follow: 4. listen for 'remoteKnob' messages and setup event handler (function 'LEDBrightness')
     socket.on('remoteKnob', backgroundBrightness);
