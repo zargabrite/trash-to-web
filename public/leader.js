@@ -65,7 +65,7 @@ function draw() {
     }
     // lead-to-follow: 1. emit message 'knob' and its data
     socket.emit('knobState', data);
-    print('The value of the potentiometer is ' + inArdData);
+    print('The value of the potentiometer is ' + Number(serial.read()));
 }
 
 // Following functions print the serial communication status to the console for debugging purposes
