@@ -6,9 +6,6 @@ var slider;
 
 var remoteKnob = 0;
 
-//connect to server
-const socket = io();
-
 function setup() {
     // set the canvas to match the window size
     if (window.innerWidth > minWidth){
@@ -31,7 +28,10 @@ function setup() {
     slider = createSlider(0, 255, 0); // indicate the value range for slider
     slider.position(width/2 + (width/2-300)/2 , height-100);
     slider.style('width', '300px');
-
+    
+    //connect to server
+    const socket = io();
+    
     socket.on('connect', function onConnect(){
         console.log('This socket is now connected to the server.');
       });
