@@ -40,13 +40,12 @@ function setup() {
     socket.on('remoteKnob', remoteKnobListener);
 }
 
-function remoteKnobListener(data) {
+function draw() {
+    function remoteKnobListener(data) {
     //lead-to-follow: 5. map the incoming remoteKnob message's data to the variable backgBrightness
     remoteKnob = data.val
     console.log(remoteKnob)
-}
-
-function draw() {
+    }
     var backgBright = map(remoteKnob, 0, 255, 0, 255);
     fill(backgBright);
     rect(0,0,width,height);
