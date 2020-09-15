@@ -33,11 +33,11 @@ function setup() {
     const socket = io();
 
     socket.on('connect', function onConnect(){
-        log.debug('This socket is now connected to the server.');
+        print('This socket is now connected to the server.');
       });
 
     //lead-to-follow: 4. listen for 'remoteKnob' messages and setup event handler (function 'LEDBrightness')
-    socket.on('remoteKnob', backgroundBrightness(data));
+    socket.on('remoteKnob', data));
 }
 
 function printConnection() {
