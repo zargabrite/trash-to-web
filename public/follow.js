@@ -37,14 +37,10 @@ function setup() {
       });
 
     //lead-to-follow: 4. listen for 'remoteKnob' messages and setup event handler (function 'LEDBrightness')
-    socket.on('remoteKnob', data));
+    socket.on('remoteKnob', remoteKnobListener);
 }
 
-function printConnection() {
-    print('connected to server.')
-}
-
-function backgroundBrightness(data) {
+function remoteKnobListener(data) {
     //lead-to-follow: 5. map the incoming remoteKnob message's data to the variable backgBrightness
     remoteKnob = data.val
     console.log(remoteKnob)
