@@ -1,5 +1,3 @@
-const { text } = require("body-parser");
-
 var minWidth = 600;   //set min width and height for canvas
 var minHeight = 400;
 var width, height;    // actual width and height for the sketch
