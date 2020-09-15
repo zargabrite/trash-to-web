@@ -6,6 +6,9 @@ var slider;
 
 var remoteKnob = 0;
 
+//connect to server
+const socket = io();
+
 function setup() {
     // set the canvas to match the window size
     if (window.innerWidth > minWidth){
@@ -29,11 +32,8 @@ function setup() {
     slider.position(width/2 + (width/2-300)/2 , height-100);
     slider.style('width', '300px');
 
-    //connect to server
-    const socket = io();
-
     socket.on('connect', function onConnect(){
-        print('This socket is now connected to the server.');
+        console.log('This socket is now connected to the server.');
       });
 
     //lead-to-follow: 4. listen for 'remoteKnob' messages and setup event handler (function 'LEDBrightness')
