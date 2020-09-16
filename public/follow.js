@@ -2,6 +2,8 @@ var minWidth = 600;   //set min width and height for canvas
 var minHeight = 400;
 var width, height;    // actual width and height for the sketch
 
+var socket;
+
 var slider;
 
 var remoteKnob = 0;
@@ -30,7 +32,7 @@ function setup() {
     slider.style('width', '300px');
     
     //connect to server
-    const socket = io();
+    socket = io();
     
     socket.on('connect', function onConnect(){
         console.log('This socket is now connected to the server.');
@@ -62,7 +64,7 @@ function draw() {
     // grab arduino knob value and store it in the object data
     var data = {
         //!!!this may need to be map()'d to properly control LED brightness.!!!
-        val: slider.value()
+        val: sliderValue
     }
     // lead-to-follow: 1. emit message 'knob' and its data
     socket.emit('slideState', data);
