@@ -35,7 +35,7 @@ function setup() {
     socket = io();
     
     socket.on('connect', function onConnect(){
-        console.log('This socket is now connected to the server.');
+        console.log('now connected to the server.');
       });
 
     //lead-to-follow: 4. listen for 'remoteKnob' messages and setup event handler (function 'LEDBrightness')
@@ -45,7 +45,7 @@ function setup() {
 function remoteKnobListener(data) {
     //lead-to-follow: 5. map the incoming remoteKnob message's data to the variable backgBrightness
     remoteKnob = data.val
-    console.log(remoteKnob)
+    console.log('remote knob val: ' + remoteKnob)
 }
 
 function draw() {
