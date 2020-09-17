@@ -43,6 +43,10 @@ function setup() {
     //connect to server
     socket = io.connect()
 
+    socket.on('connect', function onConnect(){
+      console.log('now connected to the server.');
+    });
+
     //follow-to-lead 4. recieve the message called 'LEDVal' from the server and setup event handler (function 'LEDBrightness')
     socket.on('LEDstate', LEDBrightness);
 }
