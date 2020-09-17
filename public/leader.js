@@ -52,7 +52,7 @@ function setup() {
 }
 
 function LEDBrightness(data) {
-    //map the incoming LEDVal message's data to the variable outArdData
+    //follow-to-lead: 5. map the incoming LEDVal message's data to the variable outArdData
     outArdData = data.val
     serial.write(outArdData);//write that data to the arduino
 }
@@ -60,16 +60,16 @@ function LEDBrightness(data) {
 function draw() {
     // map knob attached to arduino's value to background brightness
     var backgBrightness = map(inArdData, 0, 255, 0, 255);   // map input to the correct range of brightness
+    console.log ('knob val: ' + backgBrightness);
     fill(backgBrightness);   // transfer the brightness to brightness of the color used for drawing
     rect(0,0,width,height);   // left half
 
-    // follow-to-lead: 5. grab arduino knob value and store it in the object data
+    // grab arduino knob value and store it in the object data
     var data = {
         val: inArdData
     }
     // lead-to-follow: 1. emit message 'knob' and its data
     socket.emit('knobState', data);
-    
     var textColour = map(backgBrightness, 0, 255, 255, 0);
     fill(textColour);
     textSize(18);
@@ -78,7 +78,7 @@ function draw() {
 
 // Following functions print the serial communication status to the console for debugging purposes
 function printList(portList) {
-    // portList is an array of serial port names
+    // portList is an array of serial port names for Arduino
     for (var i = 0; i < portList.length; i++) {
     // Display the list the console:
     print(i + " " + portList[i]);
@@ -86,7 +86,7 @@ function printList(portList) {
    }
    
    function serverConnected() {
-     print('connected to server.');
+     print('connected to serial server.');
    }
    
    function portOpen() {
