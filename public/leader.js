@@ -7,7 +7,10 @@ var width, height;    // actual width and height for the sketch
 var serial;   // variable to hold an instance of the serialport library
 var portName = '/dev/tty.usbmodem14101';    // fill in your serial port name here
 var inArdData;   // variable to hold the input data from Arduino
-var outArdData; // for data output
+var outArdData = {
+  port10: 0,
+  port11: 0
+}; // for data output
 
 function setup() {
     // display setup: set the canvas to match the window size
@@ -41,7 +44,7 @@ function setup() {
 
 
     //connect to server
-    socket = io.connect()
+    socket = io.connect();
 
     socket.on('connect', function onConnect(){
       console.log('now connected to the server.');
@@ -49,15 +52,20 @@ function setup() {
 
     //follow-to-lead 4. recieve the message called 'LEDVal' from the server and setup event handler (function 'LEDBrightness')
     socket.on('LEDstate', LEDBrightness);
+    socket.on('knobPassed', outKnobPassed)
 }
 
 function LEDBrightness(data) {
     //follow-to-lead: 5. map the incoming LEDVal message's data to the variable outArdData
-    outArdData = data.val
-    serial.write(outArdData);//write that data to the arduino
+    outArdData.port10 = data.sval   
 }
 
+function outKnobPassed (data) {
+    outArdData.port11 = data.kpval
+}
 function draw() {
+    serial.write(outArdData.port10, outArdData.port11);//write that data to the arduino
+
     // map knob attached to arduino's value to background brightness
     var backgBrightness = map(inArdData, 0, 255, 0, 255);   // map input to the correct range of brightness
     console.log ('knob val: ' + backgBrightness);
