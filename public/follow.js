@@ -46,6 +46,7 @@ function remoteKnobListener(data) {
     //lead-to-follow: 5. map the incoming remoteKnob message's data to the variable backgBrightness
     remoteKnob = data.val
     console.log('remote knob val: ' + remoteKnob)
+
 }
 
 function draw() {
@@ -63,9 +64,11 @@ function draw() {
     text("VIRTUAL SLIDER VALUE: " + sliderValue, 30, 20);
     // grab arduino knob value and store it in the object data
     var data = {
-        //!!!this may need to be map()'d to properly control LED brightness.!!!
-        val: sliderValue
+        sval: sliderValue,
+        kpval: remoteKnob
     }
     // lead-to-follow: 1. emit message 'knob' and its data
     socket.emit('slideState', data);
+    // pass back the remoteKnob value to leader.js
+    socket.emit('knobPass', data); 
 }
