@@ -24,7 +24,7 @@ function newConnection(socket) {
     //knobMsg function is called, which holds the data from the 'mouse' message 
     function knobMsg(data) {
         //lead-to-follow: 3. when the 'knobState' message comes in, send the data out to the client as 'remoteKnob'
-        socket.broadcast.emit('remoteKnob',data);
+        socket.broadcast.emit('remoteKnob', data);
         //if you wanted the data to go back out to everyone including yourself you would write
         //io.sockets.emit('remoteKnob',data);
 
@@ -40,5 +40,12 @@ function newConnection(socket) {
       socket.broadcast.emit('LEDstate', data);
 
       console.log("LED State: ", data);
+    }
+
+    //knobPass stuff
+    socket.on('knobPass', knobPMsg);
+
+    function knobPMsg(data) {
+        socket.broadcast.emit('knobPassed', data);
     }
 }
