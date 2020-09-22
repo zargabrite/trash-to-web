@@ -19,7 +19,7 @@ var colours = [];
 
 //Before the program starts to run, the image for background is loaded and stored into the variable called img.
 function preload() {
-  img = loadImage("media/CRT_graveyard.jpg")
+  img = createCapture(VIDEO);
 }
 
 function setup() {
