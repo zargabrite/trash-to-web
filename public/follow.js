@@ -79,7 +79,7 @@ function draw() {
 
     //The number of rows and columns in the grid tileCount depends on leadknobVal.
     //The function max() selects the larger of the two given values.
-    var tileCount = floor(width / max(leadknobVal, 5));
+    var tileCount = floor(width / max(leadknobVal, 1));
     //The grid resolution just calculated is now used to define the size of the tiles, rectSize.
     var rectSize = width / tileCount;
 
