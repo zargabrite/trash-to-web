@@ -10,8 +10,6 @@ var remoteKnob = 0;
 
 var img;
 
-var colours = [];
-
 // The currently selected sorting mode is always stored in the
 //variable sortMode. The default is to not sort, and the value 
 //is therefore set at null (undefined)
@@ -54,6 +52,7 @@ function setup() {
 
     //lead-to-follow: 4. listen for 'remoteKnob' messages and setup event handler (function 'LEDBrightness')
     socket.on('remoteKnob', remoteKnobListener);
+    //.loadPixels() accesses individual pixels of image
     img.loadPixels();
 }
 
@@ -83,9 +82,6 @@ function draw() {
     var tileCount = floor(width / max(leadknobVal, 1));
     //The grid resolution just calculated is now used to define the size of the tiles, rectSize.
     var rectSize = width / tileCount;
-
-    //.loadPixels() accesses individual pixels of image
-    colours = [];
 
     //The image is scanned line by line in the previously calculated grid spacing, rectSize.
     //The pixels are stored in the pixels[] array as a long list of values. 
