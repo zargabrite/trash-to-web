@@ -58,7 +58,6 @@ function LEDBrightness(data) {
     serial.write(outArdData);//write that data to the arduino 
 }
 
-}
 function draw() {
     // map knob attached to arduino's value to background brightness
     var backgBrightness = map(inArdData, 0, 255, 0, 255);   // map input to the correct range of brightness
