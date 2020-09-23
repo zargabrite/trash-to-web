@@ -1,4 +1,4 @@
-//display setup variables
+//min display size variables
 var minWidth = 600;   //set min width and height for canvas
 var minHeight = 400;
 var width, height;    // actual width and height for the sketch
@@ -7,13 +7,10 @@ var width, height;    // actual width and height for the sketch
 var serial;   // variable to hold an instance of the serialport library
 var portName = 'COM3';    // fill in your serial port name here
 var inArdData;   // variable to hold the input data from Arduino
-var outArdData = {
-  port10: 0,
-  port11: 0
-}; // for data output
+var outArdData; // for data output
 
 function setup() {
-    // display setup: set the canvas to match the window size
+    // display setup: set the canvas to match the window size or min dimensions
     if (window.innerWidth > minWidth){
       width = window.innerWidth;
     } else {
@@ -47,7 +44,7 @@ function setup() {
     socket = io.connect();
 
     socket.on('connect', function onConnect(){
-      console.log('now connected to the server.');
+      console.log('socket.io connection made.');
     });
 
     //follow-to-lead 4. recieve the message called 'LEDVal' from the server and setup event handler (function 'LEDBrightness')
@@ -57,15 +54,12 @@ function setup() {
 
 function LEDBrightness(data) {
     //follow-to-lead: 5. map the incoming LEDVal message's data to the variable outArdData
-    outArdData.port10 = data.sval   
+    outArdData = data.val
+    serial.write(outArdData);//write that data to the arduino 
 }
 
-function outKnobPassed (data) {
-    outArdData.port11 = data.kpval
 }
 function draw() {
-    serial.write(outArdData.port10, outArdData.port11);//write that data to the arduino
-
     // map knob attached to arduino's value to background brightness
     var backgBrightness = map(inArdData, 0, 255, 0, 255);   // map input to the correct range of brightness
     console.log ('knob val: ' + backgBrightness);
