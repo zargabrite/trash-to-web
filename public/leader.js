@@ -7,7 +7,10 @@ var width, height;    // actual width and height for the sketch
 var serial;   // variable to hold an instance of the serialport library
 var portName = 'COM3';    // fill in your serial port name here
 var inArdData;   // variable to hold the input data from Arduino
-var outArdData; // for data output
+var outArdData = {
+  port10: 0;
+  port11: 0;
+}; // for data output
 
 function setup() {
     // display setup: set the canvas to match the window size
@@ -44,17 +47,18 @@ function setup() {
     socket = io.connect()
 
     socket.on('connect', function onConnect(){
-      console.log('now connected to the server.');
+      console.log('socket.io connected.');
     });
 
     //follow-to-lead 4. recieve the message called 'LEDVal' from the server and setup event handler (function 'LEDBrightness')
-    socket.on('LEDstate', LEDBrightness);
+    socket.on('followOut', DataToArd);
 }
 
-function LEDBrightness(data) {
+function DataToArd(data) {
     //follow-to-lead: 5. map the incoming LEDVal message's data to the variable outArdData
-    outArdData = data.val
-    serial.write(outArdData);//write that data to the arduino
+    outArdData.port10 = data.sliderValue
+    outArdData.port11 = data.micLevel
+    serial.write(outArdData.port10,",",outArdData.port11);//write that data to the arduino
 }
 
 function draw() {
