@@ -54,6 +54,7 @@ function setup() {
 
     //lead-to-follow: 4. listen for 'remoteKnob' messages and setup event handler (function 'LEDBrightness')
     socket.on('remoteKnob', remoteKnobListener);
+    img.loadPixels();
 }
 
 function remoteKnobListener(data) {
@@ -84,7 +85,6 @@ function draw() {
     var rectSize = width / tileCount;
 
     //.loadPixels() accesses individual pixels of image
-    img.loadPixels();
     colours = [];
 
     //The image is scanned line by line in the previously calculated grid spacing, rectSize.
