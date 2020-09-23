@@ -33,12 +33,10 @@ function newConnection(socket) {
     }
 
     //follow-to-lead: 2. listen for slider messages
-    socket.on('slideState', slideMsg);
+    socket.on('followSend', followMsg);
     
-    function slideMsg(data) {
+    function followMsg(data) {
       //follow-to-lead 3. emit slider values to leader-side for changing LED state
-      socket.broadcast.emit('LEDstate', data);
-
-      console.log("LED State: ", data);
+      socket.broadcast.emit('followOut', data);
     }
 }
