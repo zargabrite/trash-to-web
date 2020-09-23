@@ -84,8 +84,6 @@ function draw() {
     var tileCount = floor(width / max(leadknobVal, 1));
     //The grid resolution just calculated is now used to define the size of the tiles, rectSize.
     var rectSize = width / tileCount;
-
-    colours = [];
   
     //The image is scanned line by line in the previously calculated grid spacing, rectSize.
     //The pixels are stored in the pixels[] array as a long list of values. 
