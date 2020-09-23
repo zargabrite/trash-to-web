@@ -10,6 +10,8 @@ var remoteKnob = 0;
 
 var img;
 
+var colours = [];
+
 // The currently selected sorting mode is always stored in the
 //variable sortMode. The default is to not sort, and the value 
 //is therefore set at null (undefined)
@@ -83,6 +85,8 @@ function draw() {
     //The grid resolution just calculated is now used to define the size of the tiles, rectSize.
     var rectSize = width / tileCount;
 
+    colours = [];
+  
     //The image is scanned line by line in the previously calculated grid spacing, rectSize.
     //The pixels are stored in the pixels[] array as a long list of values. 
     for (var gridY = 0; gridY < tileCount; gridY++) {
