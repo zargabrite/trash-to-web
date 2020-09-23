@@ -45,6 +45,10 @@ function setup() {
     slider.position(width/2 + (width/2-300)/2 , height-100);
     slider.style('width', '300px');
     
+    //.loadPixels() accesses individual pixels of image
+    img.loadPixels();
+    colours = [];
+
     //connect to server
     socket = io();
     
@@ -83,7 +87,6 @@ function draw() {
     //The grid resolution just calculated is now used to define the size of the tiles, rectSize.
     var rectSize = width / tileCount;
 
-    colours = [];
 
     //The image is scanned line by line in the previously calculated grid spacing, rectSize.
     //The pixels are stored in the pixels[] array as a long list of values. 
@@ -109,14 +112,6 @@ function draw() {
         i++;
       }
     }
-
-    // draw the text
-    var sliderValue = slider.value()
-    var textColour = map(leadknobVal, 0, 255, 255,0);
-    fill(textColour);
-    textSize(18);
-    text("REMOTE KNOB VALUE: " + leadknobVal, 30, 50);
-    text("VIRTUAL SLIDER VALUE: " + sliderValue, 30, 20);
 
     // grab arduino knob value and store it in the object data
     var data = {
