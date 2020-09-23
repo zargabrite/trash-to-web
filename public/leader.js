@@ -49,7 +49,6 @@ function setup() {
 
     //follow-to-lead 4. recieve the message called 'LEDVal' from the server and setup event handler (function 'LEDBrightness')
     socket.on('LEDstate', LEDBrightness);
-    socket.on('knobPassed', outKnobPassed)
 }
 
 function LEDBrightness(data) {
