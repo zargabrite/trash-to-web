@@ -5,7 +5,7 @@ var width, height;    // actual width and height for the sketch
 
 //arduino serial port related variables
 var serial;   // variable to hold an instance of the serialport library
-var portName = '/dev/tty.usbmodem14101';    // fill in your serial port name here
+var portName = 'COM3';    // fill in your serial port name here
 var inArdData;   // variable to hold the input data from Arduino
 var outArdData; // for data output
 
