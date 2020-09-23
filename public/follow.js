@@ -49,7 +49,7 @@ function setup() {
     socket = io();
     
     socket.on('connect', function onConnect(){
-        console.log('now connected to the server.');
+        console.log('socket.io connection made.');
       });
 
     //lead-to-follow: 4. listen for 'remoteKnob' messages and setup event handler (function 'LEDBrightness')
@@ -114,13 +114,10 @@ function draw() {
 
     // grab arduino knob value and store it in the object data
     var data = {
-        sval: sliderValue,
-        kpval: remoteKnob
+        val: sliderValue,
     }
     // lead-to-follow: 1. emit message 'knob' and its data
     socket.emit('slideState', data);
-    // pass back the remoteKnob value to leader.js
-    socket.emit('knobPass', data); 
 }
 
 function setImage(loadedImageFile) {
