@@ -42,10 +42,4 @@ function newConnection(socket) {
       console.log("LED State: ", data);
     }
 
-    //knobPass stuff
-    socket.on('knobPass', knobPMsg);
-
-    function knobPMsg(data) {
-        socket.broadcast.emit('knobPassed', data);
-    }
 }
