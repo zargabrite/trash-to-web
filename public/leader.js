@@ -8,8 +8,8 @@ var serial;   // variable to hold an instance of the serialport library
 var portName = 'COM3';    // fill in your serial port name here
 var inArdData;   // variable to hold the input data from Arduino
 var outArdData = {
-  port10: 0;
-  port11: 0;
+  port10: 0,
+  port11: 0
 }; // for data output
 
 function setup() {
