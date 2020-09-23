@@ -8,6 +8,8 @@ var slider;
 
 var remoteKnob = 0;
 
+var mic;
+
 function setup() {
     // set the canvas to match the window size
     if (window.innerWidth > minWidth){
@@ -22,10 +24,14 @@ function setup() {
     }
 
     //display setup: set up canvas
-    createCanvas(width, height);
+    var cnv = createCanvas(width, height);
     noStroke();
     background(0);
     
+    cnv.mousePressed(userStartAudio);
+    mic = new p5.AudioIn();
+    mic.start();
+
     //setup slider stuff
     slider = createSlider(0, 255, 0); // indicate the value range for slider
     slider.position(width/2 + (width/2-300)/2 , height-100);
@@ -61,11 +67,18 @@ function draw() {
     textSize(18);
     text("REMOTE KNOB VALUE: " + backgBright, 30, 50);
     text("VIRTUAL SLIDER VALUE: " + sliderValue, 30, 20);
+    //draw audio setup instructions
+    textSize(10);
+    text('tap to start', width/2, 20);
+
+    //mic stuff
+    micLevel = mic.getLevel();
+
     // grab arduino knob value and store it in the object data
     var data = {
-        //!!!this may need to be map()'d to properly control LED brightness.!!!
-        val: sliderValue
+        slideVal: sliderValue,
+        levelVal: micLevel
     }
     // lead-to-follow: 1. emit message 'knob' and its data
-    socket.emit('slideState', data);
+    socket.emit('followSend', data);
 }
