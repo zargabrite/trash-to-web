@@ -7,7 +7,13 @@ var width, height;    // actual width and height for the sketch
 var serial;   // variable to hold an instance of the serialport library
 var portName = 'COM3';    // fill in your serial port name here
 var inArdData;   // variable to hold the input data from Arduino
-var outArdData; // for data output
+var outArdData = {
+    p10: 0,
+    p11: 0 
+}; // for data output
+
+var slider;
+var sliderValue;
 
 function setup() {
     // display setup: set the canvas to match the window size
@@ -26,6 +32,11 @@ function setup() {
     createCanvas(width, height);
     noStroke();
     background(0);
+
+    //setup slider stuff
+    slider = createSlider(0, 255, 0); // indicate the value  range for slider
+    slider.position(width/2 + (width/2-300)/2, height-100);
+    slider.style('width', '300px');
 
     //arduino: set up communication port with arduino
     serial = new p5.SerialPort();       // make a new instance of the serialport library
@@ -52,9 +63,9 @@ function setup() {
 }
 
 function LEDBrightness(data) {
-    //follow-to-lead: 5. map the incoming LEDVal message's data to the variable outArdData
-    outArdData = data.val
-    serial.write(outArdData);//write that data to the arduino
+    //follow-to-lead: 5. map the incoming LEDVal message's data to the variable outArdData.p10
+    outArdData.p10 = data.val
+    serial.write(outArdData.p10 + "," + outArdData.p11);//write that data to the arduino
 }
 
 function draw() {
@@ -70,10 +81,15 @@ function draw() {
     }
     // lead-to-follow: 1. emit message 'knob' and its data
     socket.emit('knobState', data);
+
+    //draw the text
+    sliderValue = slider.value();
     var textColour = map(backgBrightness, 0, 255, 255, 0);
     fill(textColour);
     textSize(18);
     text("KNOB VALUE: " + inArdData, 30, 50);
+    text("VIRTUAL SLIDER VALUE: " + sliderValue, 30, 20);
+    outArdData.p11 = sliderValue;
 }
 
 // Following functions print the serial communication status to the console for debugging purposes
