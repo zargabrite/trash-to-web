@@ -72,7 +72,7 @@ function LEDBrightness(data) {
 function draw() {
     // map knob attached to arduino's value to background brightness
     var backgBrightness = map(inArdData, 0, 255, 0, 255);   // map input to the correct range of brightness
-    console.log ('knob val: ' + backgBrightness);
+    //console.log ('knob val: ' + backgBrightness);
     fill(backgBrightness);   // transfer the brightness to brightness of the color used for drawing
     rect(0,0,width,height);   // left half
 
