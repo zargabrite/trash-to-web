@@ -7,7 +7,7 @@ var width, height;    // actual width and height for the sketch
 var serial;   // variable to hold an instance of the serialport library
 var portName = 'COM3';    // fill in your serial port name here
 var inArdData;   // variable to hold the input data from Arduino
-var outArdData {
+var outArdData = {
     p10: 0,
     p11: 0
 }    ; // for data output
