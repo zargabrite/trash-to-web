@@ -63,7 +63,7 @@ function LEDBrightness(data) {
     //follow-to-lead: 5. map the incoming LEDVal message's data to the variable outArdData.p10
     outArdData = data.val
     console.log(outArdData);
-    serial.write(65+"\n");//write that data to the arduino
+    serial.write(65+","+92+"\n");//write that data to the arduino
 }
 
 function draw() {
