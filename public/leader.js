@@ -86,7 +86,7 @@ function draw() {
     textSize(18);
     text("KNOB VALUE: " + inArdData, 30, 50);
     text("VIRTUAL SLIDER VALUE: " + sliderValue, 30, 20);
-    outArdData.p11 = sliderValue;
+    //outArdData.p11 = sliderValue;
 }
 
 // Following functions print the serial communication status to the console for debugging purposes
