@@ -7,7 +7,7 @@ var width, height;    // actual width and height for the sketch
 var serial;   // variable to hold an instance of the serialport library
 var portName = 'COM3';    // fill in your serial port name here
 var inArdData;   // variable to hold the input data from Arduino
-var outArdData; // for data output
+var outArdData1; // for data output
 
 var slider;
 var sliderValue;
@@ -61,9 +61,9 @@ function setup() {
 
 function LEDBrightness(data) {
     //follow-to-lead: 5. map the incoming LEDVal message's data to the variable outArdData.p10
-    outArdData = data.val
-    console.log(outArdData);
-    serial.write(500+","+outArdData+","+501+","+92+"\n");//write that data to the arduino
+    outArdData1 = data.val
+    console.log(outArdData1);
+    serial.write(500+","+outArdData1+","+501+","+outArdData2+"\n");//write that data to the arduino
 }
 
 function draw() {
@@ -87,7 +87,7 @@ function draw() {
     textSize(18);
     text("KNOB VALUE: " + inArdData, 30, 50);
     text("VIRTUAL SLIDER VALUE: " + sliderValue, 30, 20);
-    //outArdData.p11 = sliderValue;
+    outArdData2 = sliderValue;
     
 }
 
