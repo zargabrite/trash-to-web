@@ -66,6 +66,7 @@ function LEDBrightness(data) {
     outArdData1 = data.val1;
     outArdData3 = data.val2;
     console.log(outArdData1);
+    console.log(outArdData3+"2nd slider");
     serial.write(500+","+outArdData1+","+501+","+outArdData2+","+502+","+outArdData3+"\n");//write that data to the arduino
 }
 
