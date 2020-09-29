@@ -8,6 +8,8 @@ var serial;   // variable to hold an instance of the serialport library
 var portName = 'COM3';    // fill in your serial port name here
 var inArdData;   // variable to hold the input data from Arduino
 var outArdData1; // for data output
+var outArdData2;
+var outArdData3;
 
 var slider;
 var sliderValue;
@@ -61,9 +63,10 @@ function setup() {
 
 function LEDBrightness(data) {
     //follow-to-lead: 5. map the incoming LEDVal message's data to the variable outArdData.p10
-    outArdData1 = data.val
+    outArdData1 = data.val1;
+    outArdData3 = data.val2;
     console.log(outArdData1);
-    serial.write(500+","+outArdData1+","+501+","+outArdData2+"\n");//write that data to the arduino
+    serial.write(500+","+outArdData1+","+501+","+outArdData2+","+502+","+outArdData3+"\n");//write that data to the arduino
 }
 
 function draw() {
