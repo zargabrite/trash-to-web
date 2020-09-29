@@ -72,7 +72,7 @@ function draw() {
     // grab arduino knob value and store it in the object data
     var data = {
         //!!!this may need to be map()'d to properly control LED brightness.!!!
-        val1: slider1Value
+        val1: slider1Value,
         val2: slider2Value
     }
     // lead-to-follow: 1. emit message 'knob' and its data
